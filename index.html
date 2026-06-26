@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dungeon Crawl: First Floor Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero-panel">
+        <div>
+          <p class="eyebrow">H5 Roguelite Demo</p>
+          <h1>Dungeon Crawl: First Floor</h1>
+          <p class="lede">
+            Fight through a televised nightmare dungeon with your aristocratic
+            feline companion, stack strange loot synergies, survive neighborhood
+            bosses, and clear the first floor.
+          </p>
+        </div>
+        <div class="controls-card">
+          <h2>Controls</h2>
+          <ul>
+            <li><kbd>WASD</kbd> / <kbd>Arrows</kbd>: Move</li>
+            <li><kbd>Space</kbd> / Click: Attack</li>
+            <li><kbd>Shift</kbd>: Dash</li>
+            <li><kbd>E</kbd>: Interact / Loot</li>
+            <li><kbd>I</kbd>: Inventory</li>
+            <li><kbd>L</kbd>: Level Up</li>
+            <li><kbd>P</kbd>: Pause</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="game-layout">
+        <aside class="panel stats-panel">
+          <div class="panel-heading">
+            <h2>Crawler</h2>
+            <button id="restartButton" type="button">Restart</button>
+          </div>
+          <div class="bars">
+            <label>
+              <span>Health</span>
+              <progress id="healthBar" max="100" value="100"></progress>
+              <strong id="healthText">100 / 100</strong>
+            </label>
+            <label>
+              <span>XP</span>
+              <progress id="xpBar" max="100" value="0"></progress>
+              <strong id="xpText">0 / 100</strong>
+            </label>
+          </div>
+          <dl id="statList" class="stat-list"></dl>
+          <div class="companion-card">
+            <h3>Companion: Princess Sprinkles</h3>
+            <p id="companionText">Orbiting and heckling enemies.</p>
+          </div>
+          <div class="objective">
+            <h3>Objective</h3>
+            <p id="objectiveText">Clear rooms and find the floor boss.</p>
+          </div>
+        </aside>
+
+        <section class="stage-card">
+          <div class="stage-topline">
+            <div>
+              <p id="floorText">Floor 1 - Residential Ruin</p>
+              <h2 id="roomText">Room 1 / 6</h2>
+            </div>
+            <div class="pill-row">
+              <span id="threatPill" class="pill">Threat: Low</span>
+              <span id="rarityPill" class="pill">Loot: Common</span>
+            </div>
+          </div>
+          <canvas id="gameCanvas" width="960" height="600" aria-label="Playable dungeon demo"></canvas>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        </section>
+
+        <aside class="panel log-panel">
+          <div class="panel-heading">
+            <h2>Run Log</h2>
+            <button id="inventoryButton" type="button">Inventory</button>
+          </div>
+          <ol id="runLog" class="run-log"></ol>
+        </aside>
+      </section>
+    </main>
+
+    <div id="inventoryModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="inventoryTitle">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Equipment & Loot</p>
+            <h2 id="inventoryTitle">Inventory</h2>
+          </div>
+          <button id="closeInventoryButton" type="button" aria-label="Close inventory">×</button>
+        </div>
+        <div class="inventory-grid">
+          <section>
+            <h3>Equipped</h3>
+            <div id="equipmentGrid" class="equipment-grid"></div>
+          </section>
+          <section>
+            <h3>Backpack</h3>
+            <div id="inventoryList" class="inventory-list"></div>
+          </section>
+          <section>
+            <h3>Active Synergies</h3>
+            <ul id="synergyList" class="synergy-list"></ul>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div id="levelModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="levelTitle">
+      <div class="modal-card level-card">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Crawler Growth</p>
+            <h2 id="levelTitle">Choose a Stat Upgrade</h2>
+          </div>
+        </div>
+        <p>Level-ups use classic crawler stats: Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, and Luck.</p>
+        <div id="levelChoices" class="level-choices"></div>
+      </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
