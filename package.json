@@ -1,0 +1,20 @@
+{
+  "name": "dungeon-crawler-carl-demo",
+  "version": "1.0.0",
+  "description": "An HTML5 roguelite fan homage to the Dungeon Crawler Carl series.",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --format=iife --outfile=dist/bundle.js",
+    "watch": "esbuild src/main.js --bundle --format=iife --outfile=dist/bundle.js --watch",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulgiroux909-commits/game.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "puppeteer-core": "^25.2.1"
+  }
+}

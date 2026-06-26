@@ -138,6 +138,11 @@
     <div id="toast"></div>
   </div>
 
-  <script type="module" src="./src/main.js"></script>
+  <!--
+    Loads a pre-bundled classic script so the game runs by simply opening
+    this file (file://) — no server required. To rebuild after editing the
+    ES module source in src/, run:  npm install && npm run build
+  -->
+  <script src="./dist/bundle.js"></script>
 </body>
 </html>

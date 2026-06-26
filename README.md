@@ -14,17 +14,29 @@ This is a **playable Floor 1 demo** with all the core systems requested wired up
 
 ## ▶️ How to run
 
-The game uses native ES modules, so it must be served over HTTP (opening `index.html`
-directly via `file://` won't load the modules).
+**Just open `index.html`** in your browser (double-click it / `file://`). The game loads a
+pre-built, self-contained script in `dist/bundle.js`, so **no server is required**.
+
+Optionally, you can serve it over HTTP instead:
 
 ```bash
-# from the repo root
-python3 -m http.server 8000
-# then open http://localhost:8000 in your browser
+python3 -m http.server 8000   # then open http://localhost:8000
+# or: npm run serve
 ```
 
-Any static file server works (e.g. `npx serve`, VS Code Live Server, nginx). No build step,
-no dependencies, no bundler — pure HTML/CSS/JS.
+### Editing the source
+
+The readable source lives in `src/` as ES modules. After changing it, rebuild the bundle:
+
+```bash
+npm install      # one-time: installs esbuild
+npm run build    # regenerates dist/bundle.js
+# or: npm run watch   (rebuilds on every save)
+```
+
+> Why a bundle? Browsers block native ES-module `import`s over `file://`, which would make
+> double-clicking `index.html` silently fail (e.g. the start button doing nothing). Bundling
+> to one classic script makes the game run anywhere with zero setup.
 
 ---
 
@@ -112,9 +124,10 @@ ambient "System" barks during play.
 ## 🗂️ Project structure
 
 ```
-index.html              # shell, HUD/overlay DOM
+index.html              # shell, HUD/overlay DOM (loads dist/bundle.js)
+dist/bundle.js          # pre-built, self-contained game script (committed)
 styles/main.css         # all styling
-src/
+src/                    # readable ES-module source (bundled into dist/)
   core/                 # rng, input, loop, event bus, config, math utils
   data/                 # stats, rarities, items, monsters, floors, synergies, events, lore
   systems/              # player, donut, equipment, loot, progression, dungeon gen, combat/world
