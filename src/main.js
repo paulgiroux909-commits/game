@@ -374,6 +374,13 @@ function defaultEquipment() {
   }, {});
 }
 
+function makeId() {
+  if (globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID();
+  }
+  return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+}
+
 function createPlayer() {
   return {
     x: WIDTH / 2,
@@ -469,7 +476,7 @@ function createEnemy(type, roomIndex, bossType) {
   const angle = Math.random() * Math.PI * 2;
   const distance = 150 + Math.random() * 190;
   return {
-    id: crypto.randomUUID(),
+    id: makeId(),
     type,
     bossType,
     name: base.name,
@@ -495,7 +502,7 @@ function createEnemy(type, roomIndex, bossType) {
 function makeItem(template) {
   return {
     ...template,
-    id: crypto.randomUUID(),
+    id: makeId(),
     stats: { ...(template.stats ?? {}) },
   };
 }
@@ -531,7 +538,7 @@ function randomLoot(bonusRarity = false) {
 function dropLoot(x, y, bonusRarity = false) {
   const item = randomLoot(bonusRarity);
   state.pickups.push({
-    id: crypto.randomUUID(),
+    id: makeId(),
     kind: "item",
     item,
     x,
@@ -549,7 +556,7 @@ function dropLoot(x, y, bonusRarity = false) {
 
 function dropHealth(x, y, amount = 18) {
   state.pickups.push({
-    id: crypto.randomUUID(),
+    id: makeId(),
     kind: "health",
     amount,
     x,
