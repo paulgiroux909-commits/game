@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DCC Floor 1 Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Dungeon Crawler Carl - Floor 1 Roguelite Demo</h1>
+      <button id="restartBtn">Restart Run</button>
+    </header>
+
+    <div class="layout">
+      <aside class="panel left-panel">
+        <section>
+          <h2>Carl Status</h2>
+          <div id="playerCoreStats" class="stat-grid"></div>
+          <div id="resourceStats" class="resource-grid"></div>
+        </section>
+
+        <section>
+          <h3>Level Up</h3>
+          <p id="skillPointInfo">Skill points: 0</p>
+          <div id="levelButtons" class="level-buttons"></div>
+        </section>
+
+        <section>
+          <h3>Equipment</h3>
+          <div id="equipmentPanel" class="equip-grid"></div>
+        </section>
+
+        <section>
+          <h3>Active Synergies</h3>
+          <ul id="synergyPanel" class="synergy-list"></ul>
+        </section>
+      </aside>
+
+      <main class="game-panel">
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+        <div id="hud" class="hud"></div>
+        <div class="controls">
+          <p>Move: WASD / Arrow Keys | Carl auto-attacks nearby enemies | Donut supports from range</p>
+        </div>
+      </main>
+
+      <aside class="panel right-panel">
+        <section>
+          <h2>Inventory & Loot</h2>
+          <div id="inventoryPanel" class="inventory-list"></div>
+        </section>
+
+        <section>
+          <h3>Objective</h3>
+          <div id="objectivePanel" class="objective"></div>
+        </section>
+
+        <section>
+          <h3>Story / Event Log</h3>
+          <div id="logPanel" class="log-panel"></div>
+        </section>
+      </aside>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
