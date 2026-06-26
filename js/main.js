@@ -480,5 +480,12 @@ class Game {
   }
 }
 
-const game = new Game();
-export default game;
+function bootGame() {
+  window.DCCGame = new Game();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootGame);
+} else {
+  bootGame();
+}

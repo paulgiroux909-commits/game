@@ -1,0 +1,12 @@
+{
+  "name": "dungeon-crawler-carl",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild js/main.js --bundle --outfile=js/game.bundle.js --format=iife --charset=utf8",
+    "dev": "esbuild js/main.js --bundle --outfile=js/game.bundle.js --format=iife --charset=utf8 --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

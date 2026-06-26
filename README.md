@@ -4,13 +4,27 @@ A browser-based rogue-lite H5 game inspired by the **Dungeon Crawler Carl** seri
 
 ## Play
 
-Serve the project root with any static file server, then open `index.html`:
+Open `index.html` directly in your browser, or serve the project root with any static file server:
 
 ```bash
+# Option 1: open index.html directly (double-click or drag into browser)
+
+# Option 2: local server
 npx serve .
 # or
 python3 -m http.server 8080
 ```
+
+### Development
+
+Source lives in `js/` as ES modules. After editing source files, rebuild the browser bundle:
+
+```bash
+npm install
+npm run build
+```
+
+The game loads `js/game.bundle.js` (a single bundled script) so it works without a server or ES module support.
 
 ## Features (Floor 1 Demo)
 
@@ -43,4 +57,4 @@ Explore the Tutorial Labyrinth, defeat the **Rat King** (Neighborhood Boss), the
 
 ## Tech
 
-Vanilla HTML5 / CSS / JavaScript (ES modules). No build step required.
+HTML5 / CSS / JavaScript. Source uses ES modules; the playable build is bundled with esbuild into a single `game.bundle.js` (no build step needed to play).
