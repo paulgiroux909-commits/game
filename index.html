@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Dungeon Crawler Carl — The Crawl (Demo)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%A1%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Game canvas -->
+    <canvas id="game" width="960" height="600"></canvas>
+
+    <!-- Heads up display -->
+    <div id="hud" class="hidden">
+      <div class="hud-top">
+        <div class="bars">
+          <div class="char-name">CARL <span class="tag-primal">Primal</span></div>
+          <div class="bar hp"><div class="bar-fill" id="hp-fill"></div><span class="bar-label" id="hp-label">HP</span></div>
+          <div class="bar stam"><div class="bar-fill" id="stam-fill"></div><span class="bar-label" id="stam-label">STA</span></div>
+          <div class="bar mana"><div class="bar-fill" id="mana-fill"></div><span class="bar-label" id="mana-label">MP</span></div>
+          <div class="bar xp"><div class="bar-fill" id="xp-fill"></div><span class="bar-label" id="xp-label">XP</span></div>
+        </div>
+        <div class="donut-card">
+          <div class="char-name">PRINCESS DONUT <span class="tag-cat">Cat</span></div>
+          <div class="bar hp small"><div class="bar-fill" id="donut-hp-fill"></div><span class="bar-label" id="donut-hp-label">HP</span></div>
+        </div>
+        <div class="floor-info">
+          <div id="floor-name">Floor 1</div>
+          <div id="floor-sub">The Crawl Begins</div>
+          <div id="gold">⛀ 0 gold</div>
+          <div id="level-badge">LVL 1</div>
+        </div>
+      </div>
+
+      <!-- minimap -->
+      <canvas id="minimap" width="180" height="180"></canvas>
+
+      <!-- message log -->
+      <div id="log"></div>
+
+      <!-- ability bar -->
+      <div id="ability-bar"></div>
+
+      <div id="controls-hint">
+        WASD / Arrows: Move &nbsp;•&nbsp; J / Click: Attack &nbsp;•&nbsp; K: Donut Special &nbsp;•&nbsp; Space: Dodge &nbsp;•&nbsp; I / Tab: Inventory &nbsp;•&nbsp; E: Interact
+      </div>
+    </div>
+
+    <!-- Title screen -->
+    <div id="title-screen" class="overlay">
+      <div class="title-box">
+        <h1 class="game-title">DUNGEON CRAWLER CARL</h1>
+        <h2 class="game-subtitle">THE CRAWL — Floor 1 Demo</h2>
+        <p class="title-flavor">
+          The aliens came. They demolished every building on Earth in an instant.
+          To survive, you must descend into the Dungeon — a deadly, livestreamed game show
+          watched by trillions across the galaxy. You're in your boxers and a bathrobe.
+          Your ex's prize-winning cat, <em>Princess Donut</em>, is at your side.
+          <br/><br/>
+          Welcome, Crawler. Try not to die on camera.
+        </p>
+        <button id="start-btn" class="big-btn">DESCEND INTO THE DUNGEON</button>
+        <div class="title-credit">An unofficial fan-made homage to the DCC series by Matt Dinniman.</div>
+      </div>
+    </div>
+
+    <!-- Intro / story crawl -->
+    <div id="story-screen" class="overlay hidden">
+      <div class="story-box">
+        <div id="story-text"></div>
+        <button id="story-next" class="big-btn">CONTINUE</button>
+      </div>
+    </div>
+
+    <!-- Inventory / character menu -->
+    <div id="menu-screen" class="overlay hidden">
+      <div class="menu-box">
+        <div class="menu-header">
+          <div class="menu-tabs">
+            <button class="tab active" data-tab="equip">Equipment</button>
+            <button class="tab" data-tab="bag">Inventory</button>
+            <button class="tab" data-tab="char">Character</button>
+            <button class="tab" data-tab="synergy">Synergies</button>
+          </div>
+          <button id="menu-close" class="close-btn">✕</button>
+        </div>
+        <div class="menu-body">
+          <div id="tab-equip" class="tab-panel active"></div>
+          <div id="tab-bag" class="tab-panel"></div>
+          <div id="tab-char" class="tab-panel"></div>
+          <div id="tab-synergy" class="tab-panel"></div>
+        </div>
+        <div id="item-tooltip" class="hidden"></div>
+      </div>
+    </div>
+
+    <!-- Level up screen -->
+    <div id="levelup-screen" class="overlay hidden">
+      <div class="levelup-box">
+        <h2>LEVEL UP!</h2>
+        <p id="levelup-sub">You reached a new level. Allocate your stat point.</p>
+        <div id="levelup-points"></div>
+        <div id="levelup-stats"></div>
+        <button id="levelup-done" class="big-btn">CONFIRM</button>
+      </div>
+    </div>
+
+    <!-- Whacky event / dialog -->
+    <div id="event-screen" class="overlay hidden">
+      <div class="event-box">
+        <div id="event-icon">❗</div>
+        <h2 id="event-title">An Event</h2>
+        <div id="event-body"></div>
+        <div id="event-choices"></div>
+      </div>
+    </div>
+
+    <!-- Floor clear / next floor -->
+    <div id="floor-clear-screen" class="overlay hidden">
+      <div class="floor-clear-box">
+        <h2 id="fc-title">FLOOR CLEARED</h2>
+        <div id="fc-body"></div>
+        <button id="fc-next" class="big-btn">TAKE THE STAIRS DOWN</button>
+      </div>
+    </div>
+
+    <!-- Death screen -->
+    <div id="death-screen" class="overlay hidden">
+      <div class="death-box">
+        <h2 class="death-title">YOU DIED</h2>
+        <div id="death-body"></div>
+        <button id="death-restart" class="big-btn">CRAWL AGAIN</button>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
