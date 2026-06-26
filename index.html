@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dungeon Crawler Carl — Floor 1 Demo</title>
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <header id="top-bar">
+      <div class="logo">DCC</div>
+      <div id="floor-info">Floor 1 — The Tutorial Labyrinth</div>
+      <div id="player-summary">
+        <span id="hp-display">HP: 100/100</span>
+        <span id="level-display">Lv 1</span>
+      </div>
+    </header>
+
+    <main id="game-layout">
+      <aside id="left-panel">
+        <div class="panel-section">
+          <h3>Carl</h3>
+          <div id="stats-mini"></div>
+        </div>
+        <div class="panel-section">
+          <h3>Princess Donut</h3>
+          <div id="donut-status"></div>
+        </div>
+        <div class="panel-section">
+          <h3>Active Synergies</h3>
+          <div id="synergy-list"></div>
+        </div>
+      </aside>
+
+      <section id="game-view">
+        <canvas id="dungeon-canvas" width="640" height="480"></canvas>
+        <div id="message-log"></div>
+      </section>
+
+      <aside id="right-panel">
+        <div class="panel-section">
+          <h3>Controls</h3>
+          <div class="controls-hint">
+            <kbd>WASD</kbd> / <kbd>Arrows</kbd> Move<br>
+            <kbd>E</kbd> Interact / Pick up<br>
+            <kbd>I</kbd> Inventory<br>
+            <kbd>C</kbd> Character<br>
+            <kbd>L</kbd> Level Up<br>
+            <kbd>Space</kbd> Attack<br>
+            <kbd>Esc</kbd> Close Menu
+          </div>
+        </div>
+        <div class="panel-section">
+          <h3>Quest</h3>
+          <div id="quest-log"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Overlay: Title Screen -->
+    <div id="title-screen" class="overlay active">
+      <div class="overlay-content title-content">
+        <h1>Dungeon Crawler Carl</h1>
+        <p class="subtitle">Floor 1 Demo — The Tutorial Labyrinth</p>
+        <p class="tagline">"Welcome, Crawler Carl. You and your cat are now contestants."</p>
+        <button id="btn-start" class="btn-primary">Enter the Dungeon</button>
+        <p class="credits">A rogue-lite inspired by the DCC series</p>
+      </div>
+    </div>
+
+    <!-- Overlay: Story -->
+    <div id="story-screen" class="overlay">
+      <div class="overlay-content story-content">
+        <div id="story-text"></div>
+        <button id="btn-story-continue" class="btn-primary">Continue</button>
+      </div>
+    </div>
+
+    <!-- Overlay: Combat -->
+    <div id="combat-screen" class="overlay">
+      <div class="overlay-content combat-content">
+        <h2 id="combat-title">Combat!</h2>
+        <div id="combat-arena">
+          <div class="combatant" id="combat-player">
+            <div class="combatant-name">Carl</div>
+            <div class="combatant-hp-bar"><div class="hp-fill" id="combat-player-hp"></div></div>
+            <div class="combatant-hp-text" id="combat-player-hp-text"></div>
+          </div>
+          <div class="combat-vs">VS</div>
+          <div class="combatant" id="combat-enemy">
+            <div class="combatant-name" id="combat-enemy-name"></div>
+            <div class="combatant-hp-bar"><div class="hp-fill enemy" id="combat-enemy-hp"></div></div>
+            <div class="combatant-hp-text" id="combat-enemy-hp-text"></div>
+          </div>
+        </div>
+        <div id="donut-combat-action"></div>
+        <div id="combat-log"></div>
+        <div id="combat-actions">
+          <button class="btn-combat" data-action="attack">Attack</button>
+          <button class="btn-combat" data-action="skill">Exterminator Strike</button>
+          <button class="btn-combat" data-action="donut">Donut's Charm</button>
+          <button class="btn-combat" data-action="flee">Flee</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay: Event -->
+    <div id="event-screen" class="overlay">
+      <div class="overlay-content event-content">
+        <div class="event-announcer">📢 SYSTEM ANNOUNCEMENT</div>
+        <h2 id="event-title"></h2>
+        <p id="event-description"></p>
+        <div id="event-choices"></div>
+      </div>
+    </div>
+
+    <!-- Overlay: Level Up -->
+    <div id="levelup-screen" class="overlay">
+      <div class="overlay-content levelup-content">
+        <h2>Level Up!</h2>
+        <p id="levelup-points">You have <span id="points-remaining">3</span> stat points to allocate.</p>
+        <div id="stat-allocation"></div>
+        <button id="btn-levelup-confirm" class="btn-primary" disabled>Confirm</button>
+      </div>
+    </div>
+
+    <!-- Overlay: Inventory / Character -->
+    <div id="menu-screen" class="overlay">
+      <div class="overlay-content menu-content">
+        <div class="menu-tabs">
+          <button class="tab active" data-tab="inventory">Inventory</button>
+          <button class="tab" data-tab="equipment">Equipment</button>
+          <button class="tab" data-tab="character">Character</button>
+          <button class="tab" data-tab="codex">Codex</button>
+        </div>
+        <div class="menu-panels">
+          <div id="tab-inventory" class="tab-panel active">
+            <div id="inventory-grid"></div>
+          </div>
+          <div id="tab-equipment" class="tab-panel">
+            <div id="equipment-layout"></div>
+          </div>
+          <div id="tab-character" class="tab-panel">
+            <div id="character-sheet"></div>
+          </div>
+          <div id="tab-codex" class="tab-panel">
+            <div id="codex-content"></div>
+          </div>
+        </div>
+        <div id="item-detail"></div>
+        <button id="btn-menu-close" class="btn-secondary">Close (Esc)</button>
+      </div>
+    </div>
+
+    <!-- Overlay: Loot Pickup -->
+    <div id="loot-screen" class="overlay">
+      <div class="overlay-content loot-content">
+        <h2>Item Found!</h2>
+        <div id="loot-item-display"></div>
+        <div class="loot-actions">
+          <button id="btn-loot-equip" class="btn-primary">Equip</button>
+          <button id="btn-loot-take" class="btn-secondary">Take</button>
+          <button id="btn-loot-leave" class="btn-secondary">Leave</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay: Game Over / Victory -->
+    <div id="end-screen" class="overlay">
+      <div class="overlay-content end-content">
+        <h2 id="end-title"></h2>
+        <p id="end-message"></p>
+        <div id="end-stats"></div>
+        <button id="btn-restart" class="btn-primary">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
