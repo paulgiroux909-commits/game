@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grok 4.5 — Benchmark & pricing brief</title>
+  <meta name="description" content="Data brief: Grok 4.5 vs frontier and Vertex AI models on intelligence, cost, speed, and coding efficiency." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">Grok 4.5 brief</a>
+      <nav>
+        <a href="#matrices">Matrices</a>
+        <a href="#frontier">Frontier</a>
+        <a href="#vertex">Vertex</a>
+        <a href="#use-cases">Use cases</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">SpaceXAI · Artificial Analysis · July 2026</p>
+        <h1>Grok 4.5</h1>
+        <p class="lede">
+          Where it sits on intelligence, cost, and speed — versus frontier models and Vertex AI peers.
+          Thesis: near-frontier scores, Pareto-leading unit economics for agentic work.
+        </p>
+        <dl class="kpi-row">
+          <div>
+            <dt>AA Intelligence</dt>
+            <dd>54</dd>
+          </div>
+          <div>
+            <dt>Cost / II task</dt>
+            <dd>$0.31</dd>
+          </div>
+          <div>
+            <dt>Output speed</dt>
+            <dd>118 t/s</dd>
+          </div>
+          <div>
+            <dt>API price</dt>
+            <dd>$2 / $6</dd>
+          </div>
+          <div>
+            <dt>Coding agent</dt>
+            <dd>76 · $2.49</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="matrices" id="matrices">
+      <div class="wrap">
+        <h2>Dual-factor matrices</h2>
+        <p class="section-lede">
+          Desirable region shaded. Grok 4.5 is marked in each plot. Axes use Artificial Analysis launch metrics (July 2026) unless noted.
+        </p>
+
+        <div class="plot-grid">
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Intelligence vs cost per task</strong>
+              <span>Higher intelligence, lower $/task → golden zone (upper left)</span>
+            </figcaption>
+            <div class="plot" id="plot-cost" role="img" aria-label="Scatter plot of intelligence versus cost per task"></div>
+            <p class="plot-note">Cost = weighted average USD per Artificial Analysis Intelligence Index task.</p>
+          </figure>
+
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Intelligence vs output speed</strong>
+              <span>Higher intelligence, higher tok/s → golden zone (upper right)</span>
+            </figcaption>
+            <div class="plot" id="plot-speed" role="img" aria-label="Scatter plot of intelligence versus output speed"></div>
+            <p class="plot-note">Speed = measured output tokens/sec on first-party APIs (AA).</p>
+          </figure>
+
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Coding agent score vs cost</strong>
+              <span>Higher coding index, lower $/task → golden zone (upper left)</span>
+            </figcaption>
+            <div class="plot" id="plot-coding-cost" role="img" aria-label="Scatter plot of coding agent score versus cost"></div>
+            <p class="plot-note">Harnessed runs: Grok Build / Codex / Claude Code. Score ≈76 class.</p>
+          </figure>
+
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Coding agent score vs tokens</strong>
+              <span>Higher score, fewer tokens → golden zone (upper left)</span>
+            </figcaption>
+            <div class="plot" id="plot-coding-tokens" role="img" aria-label="Scatter plot of coding agent score versus tokens used"></div>
+            <p class="plot-note">Average tokens per Coding Agent Index task. Grok uses 1.9M vs 6–7M peers.</p>
+          </figure>
+
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Intelligence vs list output price</strong>
+              <span>Higher intelligence, lower $/1M output → golden zone (upper left)</span>
+            </figcaption>
+            <div class="plot" id="plot-price" role="img" aria-label="Scatter plot of intelligence versus output price"></div>
+            <p class="plot-note">Published API / Vertex global list rates. Output tokens dominate agent bills.</p>
+          </figure>
+
+          <figure class="plot-card">
+            <figcaption>
+              <strong>Intelligence vs tokens per II task</strong>
+              <span>Higher intelligence, fewer output tokens → golden zone (upper left)</span>
+            </figcaption>
+            <div class="plot" id="plot-tokens" role="img" aria-label="Scatter plot of intelligence versus tokens per task"></div>
+            <p class="plot-note">Grok ~14k output tokens/task; ~60% below Opus 4.8 verbosity on II tasks.</p>
+          </figure>
+        </div>
+
+        <div class="legend-bar" id="plot-legend"></div>
+      </div>
+    </section>
+
+    <section class="frontier" id="frontier">
+      <div class="wrap">
+        <h2>Frontier comparison</h2>
+        <p class="section-lede">
+          At Grok 4.5’s launch evaluation, AA placed it fourth on the Intelligence Index behind Fable 5, Opus 4.8, and GPT-5.5 — while calling out cost/performance Pareto leadership on agentic evals.
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>AA Index</th>
+                <th>$ / II task</th>
+                <th>Speed</th>
+                <th>In / Out</th>
+                <th>Coding idx</th>
+                <th>$ / coding task</th>
+                <th>Coding tokens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Claude Fable 5</td>
+                <td>60</td>
+                <td>$3.25</td>
+                <td>60 t/s</td>
+                <td>$10 / $50</td>
+                <td>~77</td>
+                <td>$11.80</td>
+                <td>7.2M</td>
+              </tr>
+              <tr>
+                <td>Claude Opus 4.8</td>
+                <td>56</td>
+                <td>$1.78</td>
+                <td>54 t/s</td>
+                <td>$5 / $25</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>GPT-5.5</td>
+                <td>55</td>
+                <td>$0.99</td>
+                <td>73 t/s</td>
+                <td>$5 / $30</td>
+                <td>76</td>
+                <td>$5.07</td>
+                <td>6.2M</td>
+              </tr>
+              <tr class="is-grok">
+                <td>Grok 4.5</td>
+                <td>54</td>
+                <td>$0.31</td>
+                <td>118 t/s</td>
+                <td>$2 / $6</td>
+                <td>76</td>
+                <td>$2.49</td>
+                <td>1.9M</td>
+              </tr>
+              <tr>
+                <td>Claude Sonnet 5 (max)</td>
+                <td>&lt; Grok</td>
+                <td>~$1.55</td>
+                <td>—</td>
+                <td>$3 / $15*</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Gemini 3.1 Pro Preview</td>
+                <td>46†</td>
+                <td>—</td>
+                <td>—</td>
+                <td>$2 / $12</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fineprint">
+          *Sonnet 5 Vertex promo $2/$10 through Aug 31, 2026; standard $3/$15.
+          †Gemini 3.1 Pro Preview score from AA Intelligence Index v4.1 commentary (time/cost charts).
+          Sonnet cost ≈5× Grok’s $0.31 per AA Grok 4.5 article. Coding tokens = average per Coding Agent Index task.
+        </p>
+
+        <h3 class="subhead">Agentic standouts (Grok)</h3>
+        <div class="mini-stats">
+          <div>
+            <span>τ³-Banking</span>
+            <strong>33% · #1</strong>
+            <p>Ahead of GPT-5.5 xhigh (31%)</p>
+          </div>
+          <div>
+            <span>GDPval-AA v2</span>
+            <strong>Elo 1543 · #4</strong>
+            <p>Between Opus 4.8 (1600) and GLM-5.2</p>
+          </div>
+          <div>
+            <span>Terminal-Bench v2.1</span>
+            <strong>~82–83%</strong>
+            <p>Near Fable / GPT-5.5 frontier band</p>
+          </div>
+          <div>
+            <span>II output tokens</span>
+            <strong>~14k / task</strong>
+            <p>&gt;60% below Opus 4.8 verbosity</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vertex" id="vertex">
+      <div class="wrap">
+        <h2>Vertex AI comparison</h2>
+        <p class="section-lede">
+          Vertex already hosts Gemini, Claude partners, Llama, Mistral, and earlier Grok (4.3 / 4.20).
+          <strong>Grok 4.5 is not listed yet</strong> — figures below assume SpaceXAI list pricing ($2 / $6) if/when it lands.
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Model on Vertex</th>
+                <th>AA Index</th>
+                <th>Input / 1M</th>
+                <th>Output / 1M</th>
+                <th>vs Grok out</th>
+                <th>Fit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="is-grok">
+                <td>Grok 4.5 (assumed)</td>
+                <td>54</td>
+                <td>$2.00</td>
+                <td>$6.00</td>
+                <td>1.0×</td>
+                <td>Default near-frontier agents / coding</td>
+              </tr>
+              <tr>
+                <td>Gemini 3.1 Pro</td>
+                <td>46†</td>
+                <td>$2.00</td>
+                <td>$12.00</td>
+                <td>2.0×</td>
+                <td>Native multimodal / 1M context / GCP stack</td>
+              </tr>
+              <tr>
+                <td>Claude Sonnet 5 (promo)</td>
+                <td>&lt; Grok</td>
+                <td>$2.00</td>
+                <td>$10.00</td>
+                <td>1.7×</td>
+                <td>Mid Claude workhorse</td>
+              </tr>
+              <tr>
+                <td>Claude Sonnet 5 (std)</td>
+                <td>&lt; Grok</td>
+                <td>$3.00</td>
+                <td>$15.00</td>
+                <td>2.5×</td>
+                <td>Mid Claude workhorse</td>
+              </tr>
+              <tr>
+                <td>Claude Opus 4.8</td>
+                <td>56</td>
+                <td>$5.00</td>
+                <td>$25.00</td>
+                <td>4.2×</td>
+                <td>Premium agentic (+2 Index pts)</td>
+              </tr>
+              <tr>
+                <td>Claude Fable 5</td>
+                <td>60</td>
+                <td>$10.00</td>
+                <td>$50.00</td>
+                <td>8.3×</td>
+                <td>Peak capability lane</td>
+              </tr>
+              <tr>
+                <td>Llama 4 Maverick</td>
+                <td>far below</td>
+                <td>$0.35</td>
+                <td>$1.15</td>
+                <td>0.2×</td>
+                <td>High-volume / lighter tasks</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fineprint">
+          Claude prices = Vertex global endpoint. Regional ≈ +10%. Gemini ≤200K context; long-context surcharges above 200K.
+          Existing Vertex Grok 4.3 lists at $1.25 / $2.50 — different SKU from Grok 4.5 assumed rates.
+        </p>
+
+        <div class="takeaway">
+          <strong>Vertex takeaway:</strong>
+          Same-or-better intelligence than Gemini Pro and Sonnet at half (or less) the output price of every Claude/Gemini peer in the near-frontier band.
+          Route Fable/Opus only when the last Index points justify 4–8× output cost.
+        </div>
+      </div>
+    </section>
+
+    <section class="use-cases" id="use-cases">
+      <div class="wrap">
+        <h2>Leading use cases</h2>
+        <p class="section-lede">Implied by where Grok lands on the matrices — not by marketing slogans.</p>
+        <ol class="use-list">
+          <li>
+            <strong>Coding agents at fleet scale</strong>
+            Coding Index parity with GPT-5.5 at ~half the task cost and ~3× fewer tokens. Best when token volume dominates spend.
+          </li>
+          <li>
+            <strong>Tool-heavy multi-step agents</strong>
+            #1 τ³-Banking. Customer ops, banking-style tool chains, orchestrators with many tool calls per turn.
+          </li>
+          <li>
+            <strong>Knowledge-work agents on a budget</strong>
+            GDPval Elo in the Opus neighborhood at a fraction of Opus $/task. Research / ops agents where Fable would overspend.
+          </li>
+          <li>
+            <strong>Vertex “default frontier” lane</strong>
+            Against Gemini ($2/$12) and Claude partners ($2–10 / $10–50), Grok is the intelligence-per-dollar default.
+          </li>
+          <li>
+            <strong>High-throughput reasoning</strong>
+            Fastest measured output speed in this peer set (~118 t/s) with concise token use — better for parallel agent swarms.
+          </li>
+        </ol>
+
+        <aside class="caveat">
+          <strong>Caveats:</strong>
+          Absolute peak remains Fable 5 (and newer GPT-5.6 Sol on the live board). AA-Omniscience accuracy rose, but hallucination rate also rose (25% → 54%) — add retrieval/verification for factual work.
+          Context is 500K (down from Grok 4.3’s 1M). Prefer Gemini/Claude when you need a full 1M window on Vertex today.
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>Sources</h3>
+        <ul>
+          <li><a href="https://artificialanalysis.ai/articles/grok-4-5-brings-spacexai-to-the-the-intelligence-frontier" target="_blank" rel="noopener">AA — Grok 4.5 article</a></li>
+          <li><a href="https://artificialanalysis.ai/models/grok-4-5" target="_blank" rel="noopener">AA — Grok 4.5 model page</a></li>
+          <li><a href="https://artificialanalysis.ai/models/claude-opus-4-8" target="_blank" rel="noopener">AA — Claude Opus 4.8</a></li>
+          <li><a href="https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-1" target="_blank" rel="noopener">AA — Intelligence Index v4.1</a></li>
+          <li><a href="https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing" target="_blank" rel="noopener">Google Cloud pricing</a></li>
+          <li><a href="https://x.ai/news/grok-4-5" target="_blank" rel="noopener">SpaceXAI — Grok 4.5</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Method note</h3>
+        <p>
+          Scatter positions use published AA figures where available. A few peer values (Sonnet $/task, Fable coding score ≈77) are derived from AA prose (“5× Grok”, “one point ahead”).
+          Re-check AA before purchasing decisions — leaderboards move.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
